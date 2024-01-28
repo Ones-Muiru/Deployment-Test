@@ -92,8 +92,8 @@ def home_page(image_path):
     """, unsafe_allow_html=True)
 
 
-# def play_sound(sound_file):
-#     st.markdown(f'<audio src="{sound_file}" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)
+def play_sound("trial_audio.mp3"):
+    st.markdown(f'<audio src="trial_audio.mp3" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)
 # def play_sound(sound_file):
 #     # Check if the predicted class is not c1
 #     if categories[predicted_class] != 'c1':
