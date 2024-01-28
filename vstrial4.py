@@ -114,7 +114,7 @@ def image_predictor_page(image_path):
         # Check if the predicted class is not c1
         if categories[predicted_class] != 'c1':
             # Play sound if the predicted class is not c1
-            play_sound("button.mp3")
+            play_sound("trial_audio.mp3")
 
 def about_us_page(image_path):
     st.image(image_path, use_column_width=True)
