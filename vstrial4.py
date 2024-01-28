@@ -94,11 +94,11 @@ def home_page(image_path):
 
 # def play_sound(sound_file):
 #     st.markdown(f'<audio src="{sound_file}" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)
-def play_sound(sound_file):
-    # Check if the predicted class is not c1
-    if categories[predicted_class] != 'c1':
-        # Play sound if the predicted class is not c1
-        st.markdown(f'<audio src="{sound_file}" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)
+# def play_sound(sound_file):
+#     # Check if the predicted class is not c1
+#     if categories[predicted_class] != 'c1':
+#         # Play sound if the predicted class is not c1
+#         st.markdown(f'<audio src="{sound_file}" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)
     
 
 def image_predictor_page(image_path):
@@ -119,6 +119,7 @@ def image_predictor_page(image_path):
 
         # Check if the predicted class is not c1
         if categories[predicted_class] != 'c1':
+            st.markdown(f'<audio src="{sound_file}" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)
             # Play sound if the predicted class is not c1
             play_sound("trial_audio.mp3")
 
