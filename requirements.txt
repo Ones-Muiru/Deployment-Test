@@ -12,7 +12,7 @@ keras
 datetime
 matplotlib
 seaborn
-skimage
+scikit-image
 Pillow
 scipy
 random
