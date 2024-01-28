@@ -4,6 +4,8 @@ from PIL import Image
 from tensorflow.keras.models import load_model
 from pydub import AudioSegment
 from pydub.playback import play
+from skimage import exposure, io
+from scipy import ndimage
 
 # Load model
 model = load_model("saved_model.h5")
@@ -11,9 +13,27 @@ model = load_model("saved_model.h5")
 # Define categories
 categories = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9']
 
+# Function to process the uploaded image
+def process_uploaded_image(uploaded_image):
+    processed_images = []
+    img = io.imread(uploaded_image)
+
+    # Deblurring and restoration using unsharp masking
+    deblurred_img = unsharp_mask(img, radius=1, amount=2)  # Adjust parameters as needed
+    deblurred_img = exposure.rescale_intensity(deblurred_img, out_range=(0, 255))
+    deblurred_img = deblurred_img.astype(np.uint8)
+
+    # Flip horizontally
+    flipped_img = cv2.flip(deblurred_img, 1)
+
+    # Rotate by 90 degrees
+    rotated_img = ndimage.rotate(deblurred_img, 90)
+    processed_images.extend([deblurred_img, flipped_img, rotated_img])
+    return processed_images
+
 # Function to make predictions on a single image
 def predict_single_image(img, model):
-    img_array = np.array(img)
+    img_array = np.array(img.resize((300, 300)))  # Resize image to (300, 300, 3)
     img_array = img_array.astype('float32') / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
