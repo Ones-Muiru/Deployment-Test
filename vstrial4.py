@@ -93,8 +93,7 @@ def home_page(image_path):
 
 
 def play_sound(sound_file):
-    sound = AudioSegment.from_mp3(sound_file)
-    play(sound)    
+    st.markdown(f'<audio src="{sound_file}" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)    
 
 def image_predictor_page(image_path):
     st.image(image_path, use_column_width=True)
