@@ -15,5 +15,4 @@ seaborn
 scikit-image
 Pillow
 scipy
-random
 pydub
