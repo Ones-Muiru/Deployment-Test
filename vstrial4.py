@@ -9,7 +9,7 @@ from scipy import ndimage
 import time
 
 # Load model
-model = load_model("googlenet_modelbest_on_deblurred_images.h5")
+model = load_model("googlenet_modelbest_on_deblurred_images.keras")
 
 # Define categories
 # Predictions of googLeNet model
