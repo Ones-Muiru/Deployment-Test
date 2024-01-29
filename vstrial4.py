@@ -6,12 +6,23 @@ from pydub import AudioSegment
 from pydub.playback import play
 from skimage import exposure, io
 from scipy import ndimage
+import time
 
 # Load model
-model = load_model("googlenet_modelbest_on_deblurred_images.keras")
+model = load_model("googlenet_modelbest_on_deblurred_images.h5")
 
 # Define categories
-categories = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9']
+# Predictions of googLeNet model
+activity_map = {'c0': 'Safe driving',
+                'c1': 'Texting - right',
+                'c2': 'Talking on the phone - right',
+                'c3': 'Texting - left',
+                'c4': 'Talking on the phone - left',
+                'c5': 'Operating the radio',
+                'c6': 'Drinking',
+                'c7': 'Reaching behind',
+                'c8': 'Hair and makeup',
+                'c9': 'Talking to passenger'}
 
 # Function to process the uploaded image
 def process_uploaded_image(uploaded_image):
@@ -94,7 +105,7 @@ def home_page(image_path):
     """, unsafe_allow_html=True)
 
 
-def play_sound(sound_file="trial_audio.mp3"):
+def play_sound(sound_file="Distracted_driver_alert.aac"):
     st.markdown(f'<audio src="{sound_file}" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)
 # def play_sound(sound_file):
 #     # Check if the predicted class is not c1
@@ -112,18 +123,23 @@ def image_predictor_page(image_path):
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
         st.image(image, caption="Uploaded Image.", use_column_width=True)
+        start_time = time.time()  # Start time counter
 
         # Make predictions
         predicted_class, confidence = predict_single_image(image, model)
+        prediction = f"c{predicted_class}"
+        end_time = time.time()  # End time counter
+        elapsed_time = end_time - start_time  # Calculate elapsed time
 
-        st.write(f"Predicted Class: {categories[predicted_class]}")
+        st.write(f"Predicted Class: {activity_map[prediction]}")
         st.write(f"Confidence: {confidence:.2%}")
+        st.write(f"Time taken: {elapsed_time:.2f} seconds")
 
         # Check if the predicted class is not c1
-        if categories[predicted_class] != 'c1':
+        if activity_map[prediction] != 'Safe driving':
             # st.markdown(f'<audio src="{sound_file}" autoplay="autoplay" controls="controls"></audio>', unsafe_allow_html=True)
             # Play sound if the predicted class is not c1
-            play_sound("trial_audio.mp3")
+            play_sound("Distracted_driver_alert.aac")
 
 def about_us_page(image_path):
     st.image(image_path, use_column_width=True)
@@ -136,11 +152,11 @@ def about_us_page(image_path):
 
     team_members = {
         "Leonard Gachimu": "https://github.com/leogachimu",
-        "Rowlandson Kariuki": "link-to-rowlandson-repo",
+        "Rowlandson Kariuki": "https://github.com/RowlandsonK",
         "Francis Njenga": "https://github.com/GaturaN",
         "Mourine Mwangi": "https://github.com/mourinem97",
-        "Khadija Omar": "link-to-khadija-repo",
-        "Victor Mawira": "link-to-victor-repo",
+        "Khadija Omar": "https://github.com/Khadija-Omar",
+        "Victor Mawira": "https://github.com/Victormawira",
         "Onesphoro Kibunja": "https://github.com/Ones-Muiru"
     }
 
