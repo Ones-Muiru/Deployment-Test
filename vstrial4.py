@@ -33,7 +33,7 @@ def process_uploaded_image(uploaded_image):
 
 # Function to make predictions on a single image
 def predict_single_image(img, model):
-    img_array = np.array(img.resize((300, 300)))  # Resize image to (300, 300, 3)
+    img_array = np.array(img.resize((64, 64)))  # Resize image to (300, 300, 3)
     img_array = img_array.astype('float32') / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
