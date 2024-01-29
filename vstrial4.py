@@ -8,7 +8,7 @@ from skimage import exposure, io
 from scipy import ndimage
 
 # Load model
-model = load_model("saved_model.h5")
+model = load_model("googlenet_modelbest_on_deblurred_images.keras")
 
 # Define categories
 categories = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9']
@@ -86,7 +86,9 @@ def home_page(image_path):
 
     ## Problem Statement
 
-    Distracted driving poses significant risks, including accidents, injuries, and fatalities. Identifying and mitigating instances of distraction while driving is crucial to reducing road accidents.  
+    Among the primary contributors to road accidents are speeding, drunk driving, and distracted driving. While measures such as speed guns, speed governors, and speed limits address speeding, and tools like alco-blow combat drunk driving, there remains a notable gap in addressing distracted driving effectively.
+
+    Distracted driving poses significant risks, including accidents, injuries, and fatalities. Identifying and mitigating instances of distraction while driving is crucial to reducing road accidents.
 
     The ballooning of car insurance claims led Directline Insurance, Kenya, to engage us in this project, with a vision to lower the rising claims from their customers.
     """, unsafe_allow_html=True)
@@ -136,7 +138,7 @@ def about_us_page(image_path):
         "Leonard Gachimu": "https://github.com/leogachimu",
         "Rowlandson Kariuki": "link-to-rowlandson-repo",
         "Francis Njenga": "https://github.com/GaturaN",
-        "Mourine Mwangi": "link-to-mourine-repo",
+        "Mourine Mwangi": "https://github.com/mourinem97",
         "Khadija Omar": "link-to-khadija-repo",
         "Victor Mawira": "link-to-victor-repo",
         "Onesphoro Kibunja": "https://github.com/Ones-Muiru"
